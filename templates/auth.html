@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}} - Auth</title>
+</head>
+<body>
+<a href="javascript: getLogin();">Login</a>.
+<br/>
+<div id="loginBox"></div>
+<a href="signup">Sign Up</a>.
+
+<script type="text/javascript">
+    function getLogin()
+    {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function()
+        {
+            if (xhttp.readyState == 4 && xhttp.status == 200)
+            {
+                document.getElementById("loginBox").innerHTML = xhttp.responseText;
+            }
+        };
+        xhttp.open("GET","/ajax/login.html",true);
+        xhttp.send();
+    }
+</script>
+
+</body>
+</html>
