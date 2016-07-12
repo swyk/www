@@ -23,10 +23,39 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '9ssmd^4vhs23v*m_z*r9_h+zc@li4)dw^$!+##5khs$@r$dn3='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-ALLOWED_HOSTS = ['swyk.com','www.swyk.com',"*"]
+ON_OPENSHIFT = False
+if 'OPENSHIFT_REPO_DIR' in os.environ:
+    ON_OPENSHIFT = True
 
+if ON_OPENSHIFT:
+    DEBUG = False
+    ALLOWED_HOSTS = ['swyk.cf','www.swyk.cf']
+else:
+    DEBUG = True
+    ALLOWED_HOSTS = ["*"]
+
+
+DATABASES = {}
+if 'OPENSHIFT_MYSQL_DB_URL' in os.environ:
+
+    DATABASES['default'] = {
+        'ENGINE' : 'django.db.backends.mysql',
+        'NAME': 'swyk',
+        'USER': 'admin5FD6wid',
+        'PASSWORD': 'clajdUvkhJb8',
+        'HOST': os.environ.get('OPENSHIFT_MYSQL_DB_HOST'),
+        'PORT': os.environ.get('OPENSHIFT_MYSQL_DB_PORT'),
+        }
+else:
+    DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'db.sqlite3',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',
+        'PORT': '',
+        }
 
 # Application definition
 
@@ -73,23 +102,12 @@ TEMPLATES = [
 WSGI_APPLICATION = 'swyk.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'db/base.db',
-    }
-}
-
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
@@ -103,4 +121,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = 'static/'
+STATIC_ROOT = 'staticb/'
+
+STATICFILES_DIRS = [os.path.join(BASE_DIR,"static")]

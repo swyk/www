@@ -24,4 +24,5 @@ urlpatterns = [
     url(r'^auth/',include(login.urls)),
     url(r'^ajax/(.+)',views.ajax),
     url(r'^ccb7381c767a.html$',views.test),
+    url(r'^$',views.home),
 ]

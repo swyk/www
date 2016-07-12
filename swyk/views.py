@@ -5,3 +5,6 @@ def ajax(request,offset):
 
 def test(request):
     return render(request,"ccb7381c767a.html")
+
+def home(request):
+	return render(request,"comingSoon.html")
