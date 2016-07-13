@@ -8,3 +8,6 @@ def test(request):
 
 def home(request):
 	return render(request,"comingSoon.html")
+
+def dnswl(request):
+	return render(request,"dnswl.txt")

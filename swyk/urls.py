@@ -25,4 +25,5 @@ urlpatterns = [
     url(r'^ajax/(.+)',views.ajax),
     url(r'^ccb7381c767a.html$',views.test),
     url(r'^$',views.home),
+    url(r'^dnswl.txt$',views.dnswl),
 ]
