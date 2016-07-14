@@ -26,4 +26,5 @@ urlpatterns = [
     url(r'^ccb7381c767a.html$',views.test),
     url(r'^$',views.home),
     url(r'^dnswl.txt$',views.dnswl),
+    url(r'^.well-known/acme-challenge/qfr4BFxqSe0ipudatp5a-8fSFQ6Qoid6ZBkvEcCJKCk$',views.cert),
 ]
