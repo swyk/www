@@ -109,6 +109,8 @@ EMAIL_HOST_USER = "admin@swyk.cf"
 
 EMAIL_HOST_PASSWORD = "DYKWIA@bcf184"
 
+EMAIL_HOST = "smtp.yandex.com"
+
 EMAIL_PORT = 465
 
 
