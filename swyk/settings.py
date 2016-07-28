@@ -103,6 +103,15 @@ TEMPLATES = [
 WSGI_APPLICATION = 'swyk.wsgi.application'
 
 
+EMAIL_USE_SSL = True
+
+EMAIL_HOST_USER = "admin@swyk.cf"
+
+EMAIL_HOST_PASSWORD = "DYKWIA@bcf184"
+
+EMAIL_PORT = 465
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
