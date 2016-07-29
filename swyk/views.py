@@ -32,7 +32,7 @@ def home(request):
 			Thank you,
 			SWYK Team."""
 		
-		smtpObj = smtplib.SMTP_SSL('localhost')
+		smtpObj = smtplib.SMTP_SSL('smtp.yandex.com')
 		smtpObj.sendmail(sender,receivers,message)
 		context['message'] = 1
 	return render(request,"comingSoon.html",context)
