@@ -29,6 +29,6 @@ def home(request):
 			Thank you,
 			SWYK Team."""
 		
-		send_mail("SWYK Subscription",message,sender,receivers, fail_silently=False)         
+		send_mail("SWYK Subscription",message,sender,receivers, fail_silently=False,)
 		context['message'] = 1
 	return render(request,"comingSoon.html",context)
