@@ -21,6 +21,7 @@ import views
 
 urlpatterns = [
     url(r'^permit/', include(admin.site.urls)),
+    url(r'^permit/send_mail$',views.send_bulk_mail),
     url(r'^auth/',include(login.urls)),
     url(r'^ajax/(.+)',views.ajax),
     url(r'^$',views.home),
