@@ -23,21 +23,6 @@ def home(request):
 		newSubscriber.save()
 
 		receivers = [request.POST['email']]
-		
-# 		message = """From: SWYK Team <team@swyk.cf>\nTo: %s\nMIME-Version: 1.0\nContent-type: text/html\nSubject: Share What You Know Subscription\n\n
-# Hi there,<br/>
-# Thank you for subscribing to <i><b>Share What You Know</b></i>, you will be the first to know about
-# any updates for the website.<br/><br/>
-#
-# If you didn't regester for SWYK, you can unsubscribe through our next email.<br/><br/>
-#
-# Best,<br/>
-# SWYK Team.<br/>
-# """%(",".join(receivers))
-# 		smtpObj = smtplib.SMTP_SSL('smtp.yandex.com')
-# 		smtpObj.login("team@swyk.cf","DYKWIA@bcf184")
-# 		smtpObj.sendmail(sender, receivers, message)
-#
 
 		allmails = Email.objects.all()
 
@@ -54,7 +39,7 @@ def send_bulk_mail(request):
 def send_mail(receivers,mailID):
 	sender = 'team@swyk.cf'
 	newMail = Email.objects.all().filter(id=mailID)[0]
-	message= newMail.headers%(','.join(receivers))+"\nSubject: "+newMail.subject+"\n\n\n"+newMail.body
+	message= newMail.headers%(','.join(receivers))+"\nSubject: "+newMail.subject+"\n\n"+newMail.body
 	smtpObj = smtplib.SMTP_SSL('smtp.yandex.com')
 	smtpObj.login("team@swyk.cf","DYKWIA@bcf184")
 	smtpObj.sendmail(sender,receivers,message)
