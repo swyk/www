@@ -25,4 +25,5 @@ urlpatterns = [
     url(r'^auth/',include(login.urls)),
     url(r'^ajax/(.+)',views.ajax),
     url(r'^$',views.home),
+    url(r'^unsubscribe/?(.+)',views.unsubscribe)
 ]

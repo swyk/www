@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SWYK - Coming Soon</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+            <div class="row">
+                <div class="span12 subscribe">
+                    {% if message %}
+                    <div class="alert alert-success" style="text-align: center" role="alert"><b>Unsubscribed Successfully!</b>
+                    <br/>You will not receive any updates from now. Thank You.</div>
+                    {% else %}
+                    <div class="alert alert-danger" style="text-align: center" role="alert"><b>This mail is not registered with us!</b>
+                    <br/>To subscribe go to <a href="http://www.swyk.cf" style="text-decoration: none">Home Page</a>.<br>Thank You.</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+</body>
+</html>

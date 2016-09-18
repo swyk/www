@@ -12,3 +12,9 @@ class Email(models.Model):
     headers = models.TextField()
     body = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
+
+class UnSubscriber(models.Model):
+    email = models.EmailField()
+    subCode = models.CharField(max_length=10)
+    isUnsubscribed = models.BooleanField(default=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
