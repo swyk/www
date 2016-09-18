@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Send Mail - SWYK</title>
+</head>
+<body>
+    <form action="" method="post">
+        {% csrf_token %}
+        subject: <textarea name="subject" rows="2"></textarea><br/>
+        message: <textarea name="message" rows="20" cols="100"></textarea><br/>
+        <input type="submit" name="submit">
+    </form>
+</body>
+</html>

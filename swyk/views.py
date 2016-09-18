@@ -50,7 +50,20 @@ def home(request):
 
 @login_required
 def send_bulk_mail(request):
-	return render(request,"comingSoon.html")
+	if request.POST:
+		subject = request.POST['subject']
+		message = request.POST['message']
+		sender = 'team@swyk.cf'
+		headers = "From: SWYK Team <team@swyk.cf>\nTo: %s\nMIME-Version: 1.0\nContent-type: text/html"
+		allSubscribers = Subscriber.objects.all()
+		for subscriber in allSubscribers:
+			receivers = subscriber.email
+			UnSubscribera = UnSubscriber.objects.all().filter(email=receivers)
+			message= headers%(receivers)+"\nSubject: "+subject+"\n\n"+message%(receivers,UnSubscribera[0].subCode)
+			smtpObj = smtplib.SMTP_SSL('smtp.yandex.com')
+			smtpObj.login("team@swyk.cf","DYKWIA@bcf184")
+			smtpObj.sendmail(sender,receivers,message)
+	return render(request,"sendBulkMail.html")
 
 
 def send_mail(receivers,mailID):
@@ -58,7 +71,7 @@ def send_mail(receivers,mailID):
 	newMail = Email.objects.all().filter(id=mailID)[0]
 	UnSubscribera = UnSubscriber.objects.all().filter(email='.'.join(receivers))
 	message= newMail.headers%(','.join(receivers))+"\nSubject: "+newMail.subject+"\n\n"+newMail.body%(','.join(receivers),UnSubscribera[0].subCode)
-	print message
+
 	smtpObj = smtplib.SMTP_SSL('smtp.yandex.com')
 	smtpObj.login("team@swyk.cf","DYKWIA@bcf184")
 	smtpObj.sendmail(sender,receivers,message)
