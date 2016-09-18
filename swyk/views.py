@@ -59,10 +59,13 @@ def send_bulk_mail(request):
 		for subscriber in allSubscribers:
 			receivers = subscriber.email
 			UnSubscribera = UnSubscriber.objects.all().filter(email=receivers)
-			message= headers%(receivers)+"\nSubject: "+subject+"\n\n"+message%(receivers,UnSubscribera[0].subCode)
-			smtpObj = smtplib.SMTP_SSL('smtp.yandex.com')
-			smtpObj.login("team@swyk.cf","DYKWIA@bcf184")
-			smtpObj.sendmail(sender,receivers,message)
+			message1= headers%(receivers)+"\nSubject: "+subject+"\n\n"+message%(receivers,UnSubscribera[0].subCode,)
+			try:
+				smtpObj = smtplib.SMTP_SSL('smtp.yandex.com')
+				smtpObj.login("team@swyk.cf","DYKWIA@bcf184")
+				smtpObj.sendmail(sender,receivers,message1)
+			except:
+				pass
 	return render(request,"sendBulkMail.html")
 
 
