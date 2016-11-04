@@ -30,7 +30,7 @@ if 'OPENSHIFT_REPO_DIR' in os.environ:
 
 if ON_OPENSHIFT:
     DEBUG = False
-    ALLOWED_HOSTS = ['swyk.cf','www.swyk.cf']
+    ALLOWED_HOSTS = ['*.swyk.cf','swyk.cf']
 else:
     DEBUG = True
     ALLOWED_HOSTS = ["*"]
@@ -127,3 +127,5 @@ STATIC_ROOT = os.path.join(BASE_DIR,'wsgi','static')
 STATICFILES_DIRS = [os.path.join(BASE_DIR,"static")]
 
 LOGIN_URL = '/permit/login/'
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
